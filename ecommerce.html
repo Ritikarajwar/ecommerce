@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+    <link rel="stylesheet" href="ecommerce.css">
+</head>
+<body>
+    <div id="wrapper">
+
+    </div>
+
+    <script>
+        // https://dummyjson.com/products
+        let wrapper=document.querySelector('#wrapper')
+        fetch("https://dummyjson.com/products").then((responce)=>{
+            return responce.json()
+        })
+        .then((result)=>{
+            showimg(result.products)
+        })
+        function showimg(data){
+            for(let i=0;i<data.length;i++){
+                let div=document.createElement('div')
+                let head = document.createElement('h3')
+                div.className='products'
+                let image=document.createElement('img')
+                // console.log(data[0].thumbnail)
+                head.innerHTML =data[i].title 
+                image.src=data[i].thumbnail
+                div.append(image)
+                div.append(head)
+                wrapper.append(div)
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
